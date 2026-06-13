@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -141,18 +144,27 @@ public class cadastroVIEW extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         ProdutosDTO produto = new ProdutosDTO();
-        
-        String nome = cadastroNome.getText();
-        String valor = cadastroValor.getText();
-        String status = "A Venda";
+      try {
+          String nome = cadastroNome.getText();
+          String valor = cadastroValor.getText();
+          String status = "A Venda";
        
-        produto.setNome(nome);
-        produto.setValor(Integer.parseInt(valor));
-        produto.setStatus(status);
+          produto.setNome(nome);
+          produto.setValor(Integer.parseInt(valor));
+          produto.setStatus(status);
         
-        ProdutosDAO produtodao = new ProdutosDAO();
-        produtodao.cadastrarProduto(produto);
- 
+           ProdutosDAO produtodao = new ProdutosDAO();
+           produtodao.cadastrarProduto(produto);
+         
+            JOptionPane.showMessageDialog(this,"Produto cadastrado com sucesso");
+           
+               cadastroNome.setText("");
+               cadastroNome.requestFocus();
+               cadastroValor.setText("");
+   
+      } catch (Exception e){
+            JOptionPane.showMessageDialog(this, "Ocorreu uma falha:\n" + e.getMessage());
+        }
                           
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
